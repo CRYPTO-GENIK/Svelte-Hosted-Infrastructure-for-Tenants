@@ -2,7 +2,7 @@
   import { pb } from '$lib/pocketbase';
   import { goto } from '$app/navigation';
   import { onMount } from 'svelte';
-  import { Role, hasRole } from '$lib/roles';
+  import { CORE_ROLES, hasRole } from '$lib/roles';
   let user = pb.authStore.model;
 
   onMount(() => {
@@ -25,10 +25,11 @@
   <button class="mt-4 bg-gray-500 text-white px-4 py-2 rounded" on:click={logout}>
     Logout
   </button>
-  {#if hasRole(user.role, Role.MASTER)}
+  {#if hasRole(user.role, CORE_ROLES.MASTER)}
     <p class="mt-4">Master admin panel</p>
-  {:else if hasRole(user.role, Role.WHITE_LABEL)}
+  {:else if hasRole(user.role, CORE_ROLES.WHITE_LABEL)}
     <p class="mt-4">White-label partner dashboard</p>
+    <a href="/dashboard/roles" class="block mt-2 underline text-blue-600">Manage package roles</a>
   {:else}
     <p class="mt-4">End-user dashboard</p>
   {/if}
