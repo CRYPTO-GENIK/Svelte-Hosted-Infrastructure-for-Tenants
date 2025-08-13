@@ -1,7 +1,5 @@
 <script lang="ts">
-  import { pb } from '$lib/pocketbase';
-  import { page } from '$app/stores';
-  import { goto } from '$app/navigation';
+  import { login } from './login';
   let email = '';
   let password = '';
   let error: string | null = null;
@@ -9,8 +7,7 @@
   async function submit() {
     error = null;
     try {
-      await pb.collection('users').authWithPassword(email, password);
-      goto('/dashboard');
+      await login(email, password);
     } catch (e) {
       error = e.message;
     }

@@ -11,4 +11,8 @@ describe('hasRole', () => {
     expect(hasRole(Role.END_USER, Role.MASTER)).toBe(false);
     expect(hasRole(Role.END_USER, Role.WHITE_LABEL)).toBe(false);
   });
+
+  it('rejects unknown roles', () => {
+    expect(hasRole('invalid' as Role, Role.END_USER)).toBe(false);
+  });
 });
