@@ -1,35 +1,51 @@
 # Svelte-Hosted-Infrastructure-for-Tenants
-S.H.I.T. - Svelte Hosted Infrastructure for Tenants The S.H.I.T. that actually works! 🚀
 
+S.H.I.T. - Svelte Hosted Infrastructure for Tenants. The S.H.I.T. that actually works! 🚀
 
-S.H.I.T. - Svelte Hosted Infrastructure for Tenants
-The S.H.I.T. that actually works! 🚀
-A powerful, opinionated multi-tenant SaaS framework built with Svelte and PocketBase that lets you scaffold production-ready applications with white-labeling support in minutes, not months.
-What is S.H.I.T.?
-S.H.I.T. is a comprehensive framework for building multi-tenant applications where multiple businesses can use your platform while maintaining complete data isolation and custom branding for their end customers. Think Shopify, Stripe Dashboard, or QuickBooks - one codebase serving thousands of businesses, each with their own branded experience.
-✨ Features
+A powerful, opinionated multi-tenant SaaS framework built with Svelte 5, SvelteKit, Tailwind and PocketBase.
 
-🏢 True Multi-Tenancy - Complete data isolation between organizations
-🎨 White Labeling - Custom themes, logos, domains, and branding per tenant
-⚡ Svelte Powered - Lightning-fast, reactive UI with minimal bundle size
-🗄️ PocketBase Backend - Real-time database, auth, and file storage out of the box
-🔐 Authentication & Authorization - Role-based permissions with tenant-aware security
-📱 Responsive Design - Mobile-first approach that works everywhere
-🚀 Production Ready - Docker support, monitoring, and deployment configs included
-📊 Admin Dashboard - Manage tenants, users, and system settings
-🔧 Developer Experience - Hot reload, TypeScript support, comprehensive docs
+## Features
 
-Perfect For
+- Multi-tenant architecture with role based access
+- White label support for partners and their customers
+- PocketBase powered auth and database
+- TailwindCSS styling
+- Collection generator to scaffold PocketBase collections from JSON
 
-SaaS platforms serving multiple businesses
-Agency tools with client portals
-E-commerce platforms with merchant stores
-Professional services with client dashboards
-Any application requiring organizational separation
+## Getting Started
 
-Quick Start
-TBD
+```bash
+npm install
 npm run dev
-Visit the docs at shit-framework.dev to get started.
+```
 
-Don't let your competition give you C.R.A.P. - build with S.H.I.T. instead!
+By default the app connects to a PocketBase instance at `http://127.0.0.1:8090`. Change the constant in [`src/lib/pocketbase.ts`](src/lib/pocketbase.ts) to point to your instance.
+
+Visit `/login` to authenticate against your PocketBase server. The dashboard route shows the raw authenticated user.
+
+## Collection Generator
+
+Generate PocketBase collections with standard permissions using a JSON field definition:
+
+```bash
+npm run generate <collectionName> collections/example.json
+```
+
+The generator will import the collection into the PocketBase instance configured by `PB_URL` environment variable.
+
+## Testing
+
+Vitest is configured:
+
+```bash
+npm test
+```
+
+## Documentation
+
+- [`collections/example.json`](collections/example.json) – sample field definition
+- [`scripts/generateCollection.ts`](scripts/generateCollection.ts) – imports collections
+
+## License
+
+MIT
